@@ -7,5 +7,7 @@ node_modules
 # Firebase service account files
 *-firebase-adminsdk-*.json
 *-adminsdk-*.json
-service-account*.json
+
+serviceAccountKey.json
+
 .vercel
