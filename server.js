@@ -12,8 +12,6 @@ const app = express();
 
 app.use(cors()).use(logger("dev")).use(express.json());
 
-const port = process.env.PORT || 4000;
-
 app
   .use("/api/comments/", commentsRoutes)
   .use("/api/reactions/", reactionRoutes);
@@ -22,6 +20,12 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "server is running" });
 });
 
-app.listen(port, () => {
-  console.log(`server running on port ${port}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  const port = process.env.PORT || 4000;
+
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
+
+module.exports = app;

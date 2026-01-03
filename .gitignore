@@ -8,3 +8,4 @@ node_modules
 *-firebase-adminsdk-*.json
 *-adminsdk-*.json
 service-account*.json
+.vercel
