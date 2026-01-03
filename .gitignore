@@ -1,0 +1,10 @@
+node_modules
+
+*.env*
+
+*.http
+
+# Firebase service account files
+*-firebase-adminsdk-*.json
+*-adminsdk-*.json
+service-account*.json
