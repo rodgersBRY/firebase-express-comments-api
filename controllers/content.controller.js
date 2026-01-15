@@ -18,11 +18,11 @@ const getContent = async (req, res) => {
       success: true,
       giveaway: {
         siteId: row.siteId,
-        weekKey: row.weekKey,
-        weekLabel: row.weekLabel, // e.g. "Week 47"
+        weekId: row.weekId,
+        tab: row.tabLabel,
         title: row.title,
-        postDateText: row.postDateText, // e.g. "Posted on: ..."
-        captionHtml: row.content, // HTML string
+        postDate: row.postDate,
+        content: row.content,
         bannerUrl: row.bannerUrl,
         question: row.question,
       },
