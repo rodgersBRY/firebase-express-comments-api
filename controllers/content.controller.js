@@ -21,7 +21,7 @@ const getContent = async (req, res) => {
         weekId: row.weekId,
         tab: row.tabLabel,
         title: row.title,
-        postDate: row.postDate,
+        postedDate: row.postedDate,
         content: row.content,
         bannerUrl: row.bannerUrl,
         question: row.question,

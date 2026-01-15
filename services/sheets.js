@@ -8,7 +8,7 @@ const TTL_MS = 60_000;
 const getSheetRowsCached = async () => {
   const now = Date.now();
 
-  if (cache.rows && now - cache.ts < TTL_MS) return cache.rows;
+  // if (cache.rows && now - cache.ts < TTL_MS) return cache.rows;
 
   const res = await fetch(SHEET_CSV_URL);
   if (!res.ok) throw new Error(`Failed to fetch sheet CSV: ${res.status}`);
