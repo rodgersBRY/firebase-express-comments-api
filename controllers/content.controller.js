@@ -6,6 +6,17 @@ const getContent = async (req, res) => {
 
     const rows = await getSheetRowsCached();
 
+    const tabs = rows
+      .filter((r) => r.siteId === siteId)
+      .map((r) => ({
+        weekId: r.weekId,
+        tab: r.tabLabel,
+        // isLive: String(r.isLive).toLowerCase() === "true",
+        // order: Number(r.order ?? 999),
+      }))
+      .sort((a, b) => a.order - b.order)
+      .slice(0, 5);
+
     const row = rows.find(
       (row) => row.siteId === siteId && row.weekId === weekId
     );
@@ -16,6 +27,7 @@ const getContent = async (req, res) => {
 
     return res.json({
       success: true,
+      tabs,
       giveaway: {
         siteId: row.siteId,
         weekId: row.weekId,
