@@ -1,4 +1,5 @@
 const { getSheetRowsCached } = require("../services/sheets");
+const formatDate = require("../utils/date-format");
 
 const getContent = async (req, res) => {
   try {
@@ -33,7 +34,7 @@ const getContent = async (req, res) => {
         weekId: row.weekId,
         tab: row.tabLabel,
         title: row.title,
-        postedDate: row.postedDate,
+        postedDate: formatDate(row.postedDate),
         content: row.content,
         bannerUrl: row.bannerUrl,
         question: row.question,

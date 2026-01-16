@@ -5,7 +5,7 @@ const {
   updateReaction,
 } = require("../controllers/reactions.controller");
 
-const { reactionLimiter } = require("../utils");
+const { reactionLimiter } = require("../utils/rateLimiter");
 
 app
   .route("/:siteId/:week")

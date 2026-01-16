@@ -5,7 +5,7 @@ const {
   getComments,
 } = require("../controllers/comments.controller");
 
-const { commentLimiter } = require("../utils");
+const { commentLimiter } = require("../utils/rateLimiter");
 
 app.route("/:siteId/:week").get(getComments).post(commentLimiter, newComment);
 
