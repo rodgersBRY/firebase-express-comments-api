@@ -19,7 +19,7 @@ const getContent = async (req, res) => {
       .slice(0, 5);
 
     const row = rows.find(
-      (row) => row.siteId === siteId && row.weekId === weekId
+      (row) => row.siteId === siteId && row.weekId === weekId,
     );
 
     if (!row) {
@@ -47,4 +47,40 @@ const getContent = async (req, res) => {
   }
 };
 
-module.exports = { getContent };
+const getEvents = async (req, res) => {
+  const siteId = req.params.siteId;
+
+  const weekId = req.query.weekId;
+
+  try {
+    const rows = await getSheetRowsCached();
+
+    const events = rows
+      .filter((r) => r.siteId === siteId)
+      .sort((a, b) => a.order - b.order);
+
+    if (weekId) {
+      const event = events.filter((event) => event.weekId === weekId)[0];
+
+      if (!event) {
+        return res.status(404).json({ success: false, error: "Not found" });
+      }
+
+      return res.json({
+        success: true,
+        event,
+      });
+    }
+
+    return res.json({
+      success: true,
+      events,
+    });
+  } catch (err) {
+    console.error(err);
+
+    res.status(500).json({ success: false, error: e.message });
+  }
+};
+
+module.exports = { getContent, getEvents };

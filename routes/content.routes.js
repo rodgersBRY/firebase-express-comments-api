@@ -1,7 +1,7 @@
 const app = require("express").Router();
 
-const { getContent } = require("../controllers/content.controller");
+const { getEvents } = require("../controllers/content.controller");
 
-app.route("/:siteId/:weekId").get(getContent);
+app.route("/:siteId").get(getEvents);
 
 module.exports = app;
