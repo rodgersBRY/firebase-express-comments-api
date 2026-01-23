@@ -2,7 +2,7 @@ const { rateLimit, ipKeyGenerator } = require("express-rate-limit");
 
 const generalLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  max: 10, // Limit each IP to 10 requests per windowMs
   message: {
     success: false,
     error: "Too many requests from this IP, please try again later.",
@@ -11,10 +11,10 @@ const generalLimiter = rateLimit({
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 
-// Stricter limiter for write operations (POST) - 20 requests per 15 minutes
+// Stricter limiter for write operations (POST) - 2 requests per 15 minutes
 const strictLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 20,
+  max: 2,
   message: {
     success: false,
     error: "Too many requests. Please slow down and try again later.",
@@ -23,10 +23,10 @@ const strictLimiter = rateLimit({
   legacyHeaders: false,
 });
 
-// Very strict limiter for comments - 10 comments per hour
+// Very strict limiter for comments - 2 comments per hour
 const commentLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 10,
+  max: 2,
   message: {
     success: false,
     error:
@@ -40,10 +40,10 @@ const commentLimiter = rateLimit({
   },
 });
 
-// Reaction limiter - 30 reactions per 15 minutes
+// Reaction limiter - 3 reactions per 15 minutes
 const reactionLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10,
+  max: 3,
   message: {
     success: false,
     error: "Too many reaction updates. Please wait a moment.",
